@@ -25,6 +25,9 @@ namespace ExcelSplitter
                 return;
             }
 
+            lblProgress.Text = $"正在拆分...";
+            Application.DoEvents();  // 刷新界面，防止界面卡顿
+
             // 创建输出文件夹（如果不存在）
             if (!Directory.Exists(outputFolder))
             {
@@ -57,7 +60,7 @@ namespace ExcelSplitter
 
                 // 遍历工作表，拆分每个工作表
                 int sheetCount = sourceWorkbook.Worksheets.Count;
-                progressBar.Maximum = sheetCount; // 设置进度条最大值
+                progressBar.Maximum = sheetCount; // 设置进度条最大值                
 
                 for (int i = 1; i <= sheetCount; i++)
                 {
